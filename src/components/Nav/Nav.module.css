@@ -1,0 +1,21 @@
+.nav {
+    max-width: 1128px;
+    margin: auto;
+    padding: 12px 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    flex-wrap: nowrap;
+}
+
+.nav > a {
+    width: 135px;
+    height: 34px;
+}
+
+@media (max-width: 768px) {
+    .nav > a {
+        padding: 0 5px;
+    }
+}
