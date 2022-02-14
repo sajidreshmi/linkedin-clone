@@ -1,11 +1,32 @@
 import React from 'react'
+import Container from '../../components/Container/Container'
 import Header from '../../components/Header/Header'
+import LeftContent from '../../components/LeftContent/LeftContent'
+import MainContent from '../../components/MainContent/MainContent'
+import RightContent from '../../components/RightContent/RightContent'
+import Section from '../../components/Section/Section'
+import classes from './Home.module.css'
 
 const Home = () => {
     return (
         <>
             <Header />
-            <div>home</div>
+            <Container>
+                <section className={classes['section-hurry']}>
+                    <h5>
+                        <a>Hiring in a hurry? - </a>
+                    </h5>
+                    <p>
+                        Find talended pros in record time with Upwork and keep
+                        the business moving.
+                    </p>
+                </section>
+                <section className={classes['section-layout']}>
+                    <LeftContent></LeftContent>
+                    <MainContent></MainContent>
+                    <RightContent></RightContent>
+                </section>
+            </Container>
         </>
     )
 }
