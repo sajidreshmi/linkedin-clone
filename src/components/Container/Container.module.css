@@ -1,6 +1,6 @@
 .container {
-    display: flex;
-    align-content: start;
+    /* display: flex;
+    align-content: start; */
     min-height: 700px;
     padding: 60px 0;
     position: relative;
