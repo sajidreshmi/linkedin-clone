@@ -1,11 +1,18 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import Button from '../../components/Button/Button'
 import Container from '../../components/Container/Container'
 import Nav from '../../components/Nav/Nav'
 import Section from '../../components/Section/Section'
 import classes from './Login.module.css'
+import { signInAPI } from '../../actions'
 
 const Login = () => {
+    const dispatch = useDispatch()
+
+    const signIn = () => {
+        dispatch(signInAPI())
+    }
     return (
         <Container>
             <Nav>
@@ -23,7 +30,7 @@ const Login = () => {
                     <img src='/images/login-hero.svg' />
                 </div>
                 <div className={classes['form']}>
-                    <Button name='Btn-Google-SignIn'>
+                    <Button name='Btn-Google-SignIn' onClick={() => signIn()}>
                         <img src='/images/google.svg' alt='' />
                         Sign in with Google
                     </Button>
