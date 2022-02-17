@@ -9,12 +9,12 @@ import { getFirestore } from 'firebase/firestore'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: '',
-    authDomain: '',
-    projectId: '',
-    storageBucket: '',
-    messagingSenderId: '',
-    appId: '',
+    apiKey: 'AIzaSyCDO3hQySI-W-X54HLkurBFeQCiBWZCHTo',
+    authDomain: 'linkedin-clone-dd49c.firebaseapp.com',
+    projectId: 'linkedin-clone-dd49c',
+    storageBucket: 'linkedin-clone-dd49c.appspot.com',
+    messagingSenderId: '452826772729',
+    appId: '1:452826772729:web:9e454fb82b09a2facf5e28',
 }
 
 // Initialize Firebase
