@@ -1,7 +1,9 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import classes from './LeftContent.module.css'
 
 const LeftContent = () => {
+    const user = useSelector((state) => state.userState.user)
     return (
         <div className={classes['left-content']}>
             <div className={classes['card']}>
@@ -9,7 +11,9 @@ const LeftContent = () => {
                     <div className={classes['card-background']}></div>
                     <a>
                         <div className={classes['photo']}></div>
-                        <div className={classes['link']}>Welcome, there</div>
+                        <div className={classes['link']}>
+                            Welcome, {user ? user.displayName : 'there'}
+                        </div>
                     </a>
                     <a>
                         <div className={classes['add-photo']}>Add A photo</div>

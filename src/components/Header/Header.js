@@ -1,9 +1,15 @@
 import React, { useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { signOutAPI } from '../../actions'
 
 import classes from './Header.module.css'
 
 const Header = () => {
     const signOutRef = useRef(null)
+
+    const user = useSelector((state) => state.userState.user)
+
+    const dispatch = useDispatch()
 
     const handleSignOutMouseEnter = () => {
         signOutRef.current.style.display = 'block'
@@ -11,6 +17,10 @@ const Header = () => {
 
     const handleSignOutMouseLeave = () => {
         signOutRef.current.style.display = 'none'
+    }
+
+    const signOutHandler = () => {
+        dispatch(signOutAPI())
     }
 
     return (
@@ -76,13 +86,24 @@ const Header = () => {
                             onMouseLeave={() => handleSignOutMouseLeave()}
                         >
                             <a className={classes['user']}>
-                                <img src='/images/user.svg' />
-                                <span>Me</span>
-                                <img src='/images/down-icon.svg' />
+                                {user && user.photoURL ? (
+                                    <img
+                                        src={user.photoURL}
+                                        alt=''
+                                        referrerpolicy='no-referrer'
+                                    />
+                                ) : (
+                                    <img src='/images/user.svg' alt='' />
+                                )}
+                                <span>
+                                    Me
+                                    <img src='/images/down-icon.svg' />
+                                </span>
                             </a>
                             <div
                                 className={classes['sign-out']}
                                 ref={signOutRef}
+                                onClick={() => signOutHandler()}
                             >
                                 <a>Sign Out</a>
                             </div>

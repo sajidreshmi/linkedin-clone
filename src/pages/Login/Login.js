@@ -1,20 +1,24 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Button from '../../components/Button/Button'
 import Container from '../../components/Container/Container'
 import Nav from '../../components/Nav/Nav'
 import Section from '../../components/Section/Section'
 import classes from './Login.module.css'
 import { signInAPI } from '../../actions'
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min'
 
 const Login = () => {
     const dispatch = useDispatch()
+
+    const user = useSelector((state) => state.userState.user)
 
     const signIn = () => {
         dispatch(signInAPI())
     }
     return (
         <Container>
+            {user && <Redirect to='/home' />}
             <Nav>
                 <a href='/'>
                     <img src='/images/login-logo.svg' alt='' />

@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-# Add firebase configuration initilzer in firebase.js
+## Add firebase.js file in src and initialize app along with auth, storage, firestore, GoogleAuthProvider, signInWithPopup
 
 ## Available Scripts
 
