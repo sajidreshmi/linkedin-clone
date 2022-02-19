@@ -90,7 +90,7 @@ const Header = () => {
                                     <img
                                         src={user.photoURL}
                                         alt=''
-                                        referrerpolicy='no-referrer'
+                                        referrerPolicy='no-referrer'
                                     />
                                 ) : (
                                     <img src='/images/user.svg' alt='' />

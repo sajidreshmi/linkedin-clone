@@ -1,7 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Modal from '../Modal/Modal'
 import classes from './MainContent.module.css'
 
 const MainContent = () => {
+    const [showModal, setShowModal] = useState('close')
+
+    const handleClick = (e) => {
+        e.preventDefault()
+        if (e.target !== e.currentTarget) {
+            return
+        }
+
+        switch (showModal) {
+            case 'open':
+                setShowModal('close')
+                break
+            case 'close':
+                setShowModal('open')
+                break
+            default:
+                setShowModal('close')
+                break
+        }
+    }
     return (
         <div className={classes['main-content']}>
             <div
@@ -9,7 +30,9 @@ const MainContent = () => {
             >
                 <div>
                     <img src='/images/user.svg' alt='' />
-                    <button>Start a post</button>
+                    <button onClick={(e) => handleClick(e)}>
+                        Start a post
+                    </button>
                 </div>
 
                 <div>
@@ -101,6 +124,7 @@ const MainContent = () => {
                     </div>
                 </div>
             </div>
+            <Modal showModal={showModal} handleClick={handleClick} />
         </div>
     )
 }
