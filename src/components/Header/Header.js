@@ -85,7 +85,10 @@ const Header = () => {
                             onMouseEnter={() => handleSignOutMouseEnter()}
                             onMouseLeave={() => handleSignOutMouseLeave()}
                         >
-                            <a className={classes['user']}>
+                            <a
+                                className={classes['user']}
+                                onClick={handleSignOutMouseEnter}
+                            >
                                 {user && user.photoURL ? (
                                     <img
                                         src={user.photoURL}
