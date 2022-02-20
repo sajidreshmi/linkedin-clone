@@ -8,14 +8,25 @@ import db, {
     ref,
     uploadBytesResumable,
     getDownloadURL,
-    doc,
-    setDoc,
+    collection,
+    getDocs,
+    addDoc,
 } from '../firebase'
-import { SET_USER } from './actionType'
+import { GET_ARTICLES, SET_LOADING_STATUS, SET_USER } from './actionType'
 
 export const setUser = (payload) => ({
     type: SET_USER,
     user: payload,
+})
+
+export const setLoading = (status) => ({
+    type: SET_LOADING_STATUS,
+    status: status,
+})
+
+export const getArticles = (payload) => ({
+    type: GET_ARTICLES,
+    payload: payload,
 })
 
 export const signInAPI = () => {
@@ -54,7 +65,8 @@ export const signOutAPI = () => {
 }
 
 export const postArticleAPI = (payload) => {
-    return (dispatch) => {
+    return async (dispatch) => {
+        dispatch(setLoading(true))
         if (payload.image != '') {
             const storageRef = ref(storage, `image/${payload.image.name}`)
 
@@ -75,7 +87,8 @@ export const postArticleAPI = (payload) => {
                     const downloadURL = await getDownloadURL(
                         uploadTask.snapshot.ref
                     )
-                    await setDoc(doc(db, 'posts', 'articles'), {
+
+                    await addDoc(collection(db, 'articles'), {
                         actor: {
                             description: payload.user.email,
                             title: payload.user.displayName,
@@ -87,8 +100,37 @@ export const postArticleAPI = (payload) => {
                         comments: 0,
                         description: payload.description,
                     })
+                    dispatch(setLoading(false))
                 }
             )
+        } else if (payload.video) {
+            await addDoc(collection(db, 'articles'), {
+                actor: {
+                    description: payload.user.email,
+                    title: payload.user.displayName,
+                    date: payload.timestamp,
+                    image: payload.user.photoURL,
+                },
+                video: payload.video,
+                sharedImg: '',
+                comments: 0,
+                description: payload.description,
+            })
+            dispatch(setLoading(false))
         }
+    }
+}
+
+export const getArticlesAPI = () => {
+    return async (dispatch) => {
+        const docRef = collection(db, 'articles')
+        const querySnapshot = await getDocs(docRef)
+
+        var payload = querySnapshot.docs.map((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            return doc.data()
+        })
+        // payload = payload.sort((a, b) => a.actor.timestamp - b.actor.timestamp)
+        dispatch(getArticles(payload))
     }
 }

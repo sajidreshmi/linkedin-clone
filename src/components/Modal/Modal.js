@@ -3,7 +3,7 @@ import classes from './Modal.module.css'
 import ReactPlayer from 'react-player'
 import { useDispatch, useSelector } from 'react-redux'
 // import * as firebase from 'firebase'
-import { postArticleAPI } from '../../actions'
+import { getArticlesAPI, postArticleAPI } from '../../actions'
 
 const Modal = ({ showModal, handleClick }) => {
     const [editorText, setEditorText] = useState('')
@@ -55,6 +55,7 @@ const Modal = ({ showModal, handleClick }) => {
         }
 
         dispatch(postArticleAPI(payload))
+        dispatch(getArticlesAPI())
         reset(e)
     }
     return (

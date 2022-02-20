@@ -168,6 +168,8 @@
 
 .social-count li button {
     display: flex;
+    border: none;
+    background-color: white;
 }
 
 .social-actions {
@@ -184,6 +186,16 @@
     align-items: center;
     padding: 8px;
     color: #0a66c2;
+    border: none;
+    background-color: white;
+}
+
+.post-content {
+    text-align: center;
+}
+
+.post-content > img {
+    width: 30px;
 }
 
 @media screen and (min-width: 768px) {
