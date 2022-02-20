@@ -1,7 +1,7 @@
-### Application - https://linkedin-clone-dd49c.web.app/
+Application - https://linkedin-clone-dd49c.web.app/
 # Getting Started with Create React App
 
-### Add firebase.js file in src and initialize app along with auth, storage, firestore, GoogleAuthProvider, signInWithPopup
+Add firebase.js file in src and initialize app along with auth, storage, firestore, GoogleAuthProvider, signInWithPopup
 
 ## Available Scripts
 
